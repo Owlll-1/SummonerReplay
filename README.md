@@ -1,30 +1,33 @@
-# LoL-replay
-League of Legend 2D Match-Replay
-LoL Replay
+# Summoner Replay — League of Legends 2D Match Replay Viewer
 
-A web-based League of Legends match replay viewer that uses Riot’s official Match-V5 and Timeline-V5 APIs.
+Summoner Replay is a web app that replays completed **Summoner’s Rift** matches on a 2D map. It fetches match data from Riot’s public APIs and visualizes champion movement and key events to help players (and coaches) review games at a glance.
 
-Watch Summoner’s Rift matches unfold on a 2D map — see champion positions, major events, and team stats in real time.
+> Status: **In progress**
 
-FEATURES (Current MVP)
+---
 
-Resolve matches by Riot ID (e.g., Crocodice#431)
+## ✨ Goals
 
-Fetch match + timeline from Riot’s API
+- Enter a **Riot ID** or **Match ID** and load recent matches
+- Play a **2D replay**: champion positions, kills, objectives, and timelines
+- Provide **basic playback controls** (play/pause, speed, scrub)
+- Show **team rails** (champions, K/D/A) and light stats
 
-Display a 2D Summoner’s Rift map with moving champion dots
+---
 
-Dead-reckoning between timeline frames for smooth motion
+## 🧰 Tech Stack (target)
 
-Team rails showing roster, champions, and K/D/A
+- **Frontend:** React + Vite + TypeScript • HTML5 Canvas (map rendering)
+- **Backend:** Node.js + Express + TypeScript (proxy to Riot API)
+- **API:** Riot **Match-V5** & **Timeline-V5**
+- **Tooling:** ESLint/Prettier • GitHub Issues/Projects
 
-Playback controls: play/pause, speed, scrubber
+---
 
-Type-safe full-stack (Node + Express + React + TypeScript)
+## 🗂️ Project Structure
 
-PROJECT STRUCTURE
 
-LoL-replay/
+Summoner-replay/
 │
 ├── server/ (Express backend)
 │ ├── src/
@@ -37,19 +40,20 @@ LoL-replay/
 ├── web/ (React + Vite frontend)
 │ ├── src/
 │ │ ├── pages/ Landing, Login, Replay
-│ │ ├── components/ MapCanvas, MatchFinder, TeamRail
-│ │ ├── lib/riotTimeline.ts timeline parsing + dead-reckoning
+│ │ ├── components/ MapCanvas, MatchFinder, TeamRail, MapOverlay, Objective HUD, EventBanner, EventBar
+│ │ ├── lib/gameState.ts live game state from timeline events, towerModel.ts tower positioning, riotTimeline.ts timeline parsing + dead-reckoning
 │ │ └── api.ts frontend fetch helpers
 │ └── package.json
 │
 └── README.md
 
+## 🚀 Getting Started
 SETUP INSTRUCTIONS
 
 Clone the repo
-git clone https://github.com/YOUR_USERNAME/LoL-replay.git
+git clone https://github.com/Owlll-1/Summoner-Replay.git
 
-cd LoL-replay
+cd Summoner-Replay
 
 Backend setup (Express server)
 cd server
@@ -79,27 +83,13 @@ Local: http://localhost:5173/
 Visit http://localhost:5173
  in your browser.
 
-HOW TO USE
+## 🎮 How to Use
 
-Go to the Replay page.
-
-Enter a Riot ID (like Crocodice#431) or a Match ID (like NA1_1234567890).
-
-Click Find to load recent matches.
-
-Click Play replay on any match.
-
-The map loads and you can play, pause, change speed, or scrub through time.
-
-If the match has a timeline, you’ll see blue/red champion dots moving across the map with team stats on both sides.
-
-TECH STACK
-
-Frontend: React + Vite + TypeScript
-Backend: Node.js + Express + TypeScript
-API: Riot Match-V5 & Timeline-V5
-Styling: Inline styles (Tailwind planned)
-Rendering: HTML5 Canvas (for map + champion icons)
+- 1.Open the app and go to Replay.
+- 2.Enter a Riot ID (e.g., UserName#Tagline) or a specific Match ID (e.g., NA1_1234567890).
+- 3.Choose a match → click Play replay.
+- 4.Use play/pause, speed, and the scrubber to navigate the match.
+- 5.Watch blue/red “champion dots” traverse the Rift with team rails updating K/D/A and events.
 
 SCRIPTS
 
